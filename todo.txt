@@ -1,0 +1,33 @@
+Protégodot
+
+- map
+	- reproduire famous (poudlard?) map
+- personnages
+	- mouvement
+	- 1re personne
+	- perso sympa ? pas une gellule
+- objectifs
+	- 2 équipes
+	- tuer les autres
+	- gagner 3 manches
+	- on a une vie, on meurt/tue en 3 balles
+- joueurs
+	- online
+	- + "IA" (des bots)
+- touches 
+	- zqsd : se déplacer
+	- space : sauter
+	- left click : avada kedavra / expeliarmus
+	- right click : viser (zoomer)
+	- shift (left) : protégo
+
+
+=== VERSIONS ===
+- 1 : map, joueurs avec bots ("ia"), statistiques (vie, kills, victoires...)
+	- 1.0 : joueur solo pouvant se déplacer
+	- 1.1 : joueur pouvant se déplacer en raccord avec la map
+	- 1.2 : bots qui se déplacent aléatoirement mais pas trop genre, suit le joueur si dans sa zone (voir vidéo sur le sujet, y'en a une)
+	- 1.3 : arme + mort
+	- 1.4 : jeu + stats
+- 2 : online (avec bots pour compléter les équipes)
+	- 2.0 : online
