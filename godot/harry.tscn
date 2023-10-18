@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgr5mphgi61db"]
+
+[ext_resource type="Script" path="res://Harry.gd" id="1_sumqd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uypbh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7odp"]
+
+[node name="Harry" type="CharacterBody3D"]
+script = ExtResource("1_sumqd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00279, 0)
+mesh = SubResource("CapsuleMesh_uypbh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00279, 0)
+shape = SubResource("CapsuleShape3D_e7odp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50179, 0)
