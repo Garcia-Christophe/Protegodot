@@ -20,11 +20,11 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
 func _physics_process(delta):
-	# Add the gravity.
+	# Gestion de la gravité
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle Jump.
+	# Gestion du saut
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 

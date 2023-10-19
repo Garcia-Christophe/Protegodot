@@ -15,5 +15,6 @@ uv1_triplanar = true
 [node name="Environment" instance=ExtResource("1_mplgi")]
 
 [node name="Plane" parent="." index="0"]
+layers = 16
 surface_material_override/0 = SubResource("StandardMaterial3D_p1ye6")
 surface_material_override/1 = SubResource("StandardMaterial3D_g0gub")
