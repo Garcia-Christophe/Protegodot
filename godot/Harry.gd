@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
+@onready var flash = $Corps/Flash
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 10.0
@@ -55,3 +56,5 @@ func _physics_process(delta):
 func play_attack_effects():
 	anim_player.stop()
 	anim_player.play("Attaque")
+	flash.restart()
+	flash.emitting = true

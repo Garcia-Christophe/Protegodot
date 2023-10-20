@@ -17,8 +17,8 @@
 - touches 
 	/- zqsd : se déplacer
 	/- space : sauter
-	- left click : avada kedavra / expeliarmus
-	- right click : viser (zoomer)
+	/- left click : avada kedavra / expeliarmus
+	- right click : viser (zoomer) ?
 	- shift (left) : protégo
 - annexes 
 	- logo
@@ -27,6 +27,7 @@
 		- colonnes tout autour de la map (sur l'étage, au bord de la descente)
 		- plus de matériau allure basic (genre gris de base)
 	- faire un ciel et une ambiance
+fait ? - rajouter flash attaque
 	- faire un trait de couleur rouge/verte qui se dirige vers l'ennemi
 	- ajouter de la musuique : lorsqu'on jette un sort, quand on fait protégo, une musique de fond (harry potter), prise de dégâts
 
