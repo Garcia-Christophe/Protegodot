@@ -1,14 +1,19 @@
 extends CharacterBody3D
 
+signal maj_vie(valeur_vie)
+
 # Références aux noeuds de l'arbre
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
 @onready var flash = $Corps/Flash
+@onready var raycast = $Camera3D/RayCast3D
 
 # Constantes
 const SPEED = 8.0
 const JUMP_VELOCITY = 10.0
-var gravity = 20.0
+const gravity = 20.0
+
+var vie = 3
 
 # Chaque joueur a une autorité différente, permettant d'avoir un contrôle séparé des personnages
 func _enter_tree():
@@ -36,6 +41,9 @@ func _unhandled_input(event):
 	# Clic gauche (attaque)
 	if Input.is_action_just_pressed("attack") and anim_player.current_animation != "Attaque":
 		play_attack_effects.rpc()
+		if raycast.is_colliding():
+			var hit_player = raycast.get_collider()
+			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
 
 # Appelé à chaque frame ('delta' est le temps depuis la précédente frame)
 func _physics_process(delta):
@@ -79,6 +87,13 @@ func play_attack_effects():
 	flash.restart()
 	flash.emitting = true
 
+@rpc("any_peer")
+func receive_damage():
+	vie -= 1
+	if vie <= 0:
+		vie = 3
+		position = Vector3.ZERO
+	maj_vie.emit(vie)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Attaque":
