@@ -1,6 +1,6 @@
-[gd_scene load_steps=64 format=3 uid="uid://cgr5mphgi61db"]
+[gd_scene load_steps=65 format=3 uid="uid://cgr5mphgi61db"]
 
-[ext_resource type="Script" path="res://Harry.gd" id="1_sumqd"]
+[ext_resource type="Script" path="res://player.gd" id="1_6hbn3"]
 [ext_resource type="PackedScene" uid="uid://ch2b51bor0vei" path="res://blender/lunette.blend" id="2_6ie0k"]
 [ext_resource type="PackedScene" uid="uid://c7l2w03d0lfoe" path="res://blender/echarpeHarry.blend" id="3_33bso"]
 [ext_resource type="Texture2D" uid="uid://isowhgvnqu0k" path="res://addons/kenney_particle_pack/star_06.png" id="3_cgf0x"]
@@ -330,8 +330,22 @@ _data = {
 "RESET": SubResource("Animation_utxrs")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cb77y"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+
 [node name="Harry" type="CharacterBody3D"]
-script = ExtResource("1_sumqd")
+script = ExtResource("1_6hbn3")
 
 [node name="Corps" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -1058,3 +1072,8 @@ playback_default_blend_time = 0.05
 libraries = {
 "": SubResource("AnimationLibrary_stile")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_cb77y")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

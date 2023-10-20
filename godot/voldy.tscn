@@ -1,6 +1,6 @@
-[gd_scene load_steps=52 format=3 uid="uid://dbenn0lhq6btp"]
+[gd_scene load_steps=53 format=3 uid="uid://dbenn0lhq6btp"]
 
-[ext_resource type="Script" path="res://Harry.gd" id="1_gksgs"]
+[ext_resource type="Script" path="res://player.gd" id="1_ma6rb"]
 [ext_resource type="Texture2D" uid="uid://isowhgvnqu0k" path="res://addons/kenney_particle_pack/star_06.png" id="3_bwnfp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr0cw"]
@@ -335,8 +335,22 @@ _data = {
 "RESET": SubResource("Animation_utxrs")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xn2kh"]
+properties/0/path = NodePath("Camera3D:rotation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+
 [node name="Voldy" type="CharacterBody3D"]
-script = ExtResource("1_gksgs")
+script = ExtResource("1_ma6rb")
 
 [node name="Corps" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -648,3 +662,8 @@ playback_default_blend_time = 0.05
 libraries = {
 "": SubResource("AnimationLibrary_stile")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_xn2kh")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

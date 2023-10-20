@@ -10,13 +10,23 @@ const SPEED = 8.0
 const JUMP_VELOCITY = 10.0
 var gravity = 20.0
 
+# Chaque joueur a une autorité différente, permettant d'avoir un contrôle séparé des personnages
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
 # Cycle de vie : appelé lorsque le noeud Harry entre dans l'arbre de scène pour la 1re fois
 func _ready():
+	if not is_multiplayer_authority(): return
+	
 	# Capturer la souris dans le jeu
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Associer la caméra courante au joueur
+	camera.current = true
 
 # Gestion de la souris
 func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
+	
 	# Déplacement (vue du joueur)
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
@@ -25,10 +35,12 @@ func _unhandled_input(event):
 	
 	# Clic gauche (attaque)
 	if Input.is_action_just_pressed("attack") and anim_player.current_animation != "Attaque":
-		play_attack_effects()
+		play_attack_effects.rpc()
 
 # Appelé à chaque frame ('delta' est le temps depuis la précédente frame)
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
+	
 	# Gestion de la gravité
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -58,6 +70,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 # Gestion de l'attaque
+@rpc("call_local")
 func play_attack_effects():
 	# Animation de la baguette
 	anim_player.stop()
@@ -65,3 +78,8 @@ func play_attack_effects():
 	# Animation du flash
 	flash.restart()
 	flash.emitting = true
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Attaque":
+		anim_player.play("Attente")
