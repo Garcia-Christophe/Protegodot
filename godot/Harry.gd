@@ -1,29 +1,33 @@
 extends CharacterBody3D
 
+# Références aux noeuds de l'arbre
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
 @onready var flash = $Corps/Flash
 
+# Constantes
 const SPEED = 8.0
 const JUMP_VELOCITY = 10.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 20.0
 
+# Cycle de vie : appelé lorsque le noeud Harry entre dans l'arbre de scène pour la 1re fois
 func _ready():
 	# Capturer la souris dans le jeu
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-# Gestion de la souris (vue du joueur)
+# Gestion de la souris
 func _unhandled_input(event):
+	# Déplacement (vue du joueur)
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
 		camera.rotate_x(-event.relative.y * 0.005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 	
+	# Clic gauche (attaque)
 	if Input.is_action_just_pressed("attack") and anim_player.current_animation != "Attaque":
 		play_attack_effects()
 
+# Appelé à chaque frame ('delta' est le temps depuis la précédente frame)
 func _physics_process(delta):
 	# Gestion de la gravité
 	if not is_on_floor():
@@ -53,8 +57,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+# Gestion de l'attaque
 func play_attack_effects():
+	# Animation de la baguette
 	anim_player.stop()
 	anim_player.play("Attaque")
+	# Animation du flash
 	flash.restart()
 	flash.emitting = true
