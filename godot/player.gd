@@ -1,11 +1,13 @@
 extends CharacterBody3D
 
+# Signal pour mettre à jour la vie du joueur
 signal maj_vie(valeur_vie)
 
 # Références aux noeuds de l'arbre
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
-@onready var flash = $Corps/Flash
+@onready var flash_attack = $Corps/Flash
+@onready var flash_defense = $Corps/FlashProtego
 @onready var raycast = $Camera3D/RayCast3D
 
 # Constantes
@@ -13,6 +15,7 @@ const SPEED = 8.0
 const JUMP_VELOCITY = 10.0
 const gravity = 20.0
 
+# Espérance de vie
 var vie = 3
 
 # Chaque joueur a une autorité différente, permettant d'avoir un contrôle séparé des personnages
@@ -43,7 +46,11 @@ func _unhandled_input(event):
 		play_attack_effects.rpc()
 		if raycast.is_colliding():
 			var hit_player = raycast.get_collider()
-			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+			if not hit_player.is_protected():
+				hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+	# Clic droit (défense)
+	elif Input.is_action_just_pressed("defend"):
+		play_defense_effects.rpc()
 
 # Appelé à chaque frame ('delta' est le temps depuis la précédente frame)
 func _physics_process(delta):
@@ -84,17 +91,36 @@ func play_attack_effects():
 	anim_player.stop()
 	anim_player.play("Attaque")
 	# Animation du flash
-	flash.restart()
-	flash.emitting = true
+	flash_attack.restart()
+	flash_attack.emitting = true
 
+# Gestion de la défense
+@rpc("call_local")
+func play_defense_effects():
+	# Animation de la baguette
+	anim_player.stop()
+	anim_player.play("Attaque")
+	# Animation du flash
+	flash_defense.restart()
+	flash_defense.emitting = true
+
+# Gestion de la réception de dégâts
 @rpc("any_peer")
 func receive_damage():
 	vie -= 1
 	if vie <= 0:
 		vie = 3
 		position = Vector3.ZERO
+	# Envoie du signal de mise à jour de la barre de vie
 	maj_vie.emit(vie)
 
+# Information sur l'état de défense
+@rpc("call_local")
+func is_protected():
+	return flash_defense.emitting
+
+# Jouer l'animation "Attente" à chaque fois que l'animation "Attaque" se termine
+# C'est pour le joueur adverse remote (ex: je joue Harry, alors c'est pour Voldemort de MON écran)
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Attaque":
 		anim_player.play("Attente")

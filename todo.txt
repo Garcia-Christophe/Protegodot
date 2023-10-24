@@ -1,42 +1,22 @@
+TODO
+
 === PROTEGODOT ===
 
 - map
 	- reproduire famous (poudlard?) map
-- personnages
-	- mouvement : course, jeter un sort, jump?
-	- 1re personne
-	- perso sympa ? pas une gellule
 - objectifs
-	- 2 équipes
-	- tuer les autres
-	- gagner 3 manches
-	- on a une vie, on meurt/tue en 3 balles
+	- gagner 1 manche, 3 vies chacun (1 vie = 3 sorts).
 - joueurs
-	- online
 	- + "IA" (des bots) ----- à voir, genre mangemorts ? en plus de voldemort si joueur solo
-- touches 
-	/- zqsd : se déplacer
-	/- space : sauter
-	/- left click : avada kedavra / expeliarmus
-	- right click : viser (zoomer) ?
-	- shift (left) : protégo
 - annexes 
+	- designer le menu principal (bouton, input : thème HP ?)
 	- logo
-	- déssiner Voldemort
 	- dessiner map en rapport avec Harry Potter (Style la cour de Poudlard avec des débris pour se cacher et tout genre ?)
 		- colonnes tout autour de la map (sur l'étage, au bord de la descente)
-		- plus de matériau allure basic (genre gris de base)
+		- plus aucun matériau allure basic (genre gris de base)
 	- faire un ciel et une ambiance
-fait ? - rajouter flash attaque
 	- faire un trait de couleur rouge/verte qui se dirige vers l'ennemi
 	- ajouter de la musuique : lorsqu'on jette un sort, quand on fait protégo, une musique de fond (harry potter), prise de dégâts
 
-=== VERSIONS ===
-- 1 : map, joueurs avec bots ("ia"), statistiques (vie, kills, victoires...)
-	- 1.0 : joueur solo pouvant se déplacer
-	- 1.1 : joueur pouvant se déplacer en raccord avec la map
-	- 1.2 : harry potter 
-	- 1.3 : arme + mort
-	- 1.4 : jeu + stats
-- 2 : LAN
-	- 2.0 : lan
+
+=== NOTES ===

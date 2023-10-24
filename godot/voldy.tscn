@@ -1,7 +1,8 @@
-[gd_scene load_steps=53 format=3 uid="uid://dbenn0lhq6btp"]
+[gd_scene load_steps=59 format=3 uid="uid://dbenn0lhq6btp"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ma6rb"]
 [ext_resource type="Texture2D" uid="uid://isowhgvnqu0k" path="res://addons/kenney_particle_pack/star_06.png" id="3_bwnfp"]
+[ext_resource type="Texture2D" uid="uid://dpmquj3qjrtlo" path="res://addons/kenney_particle_pack/light_03.png" id="3_chpjo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr0cw"]
 albedo_color = Color(0.941176, 0.788235, 0.572549, 1)
@@ -167,6 +168,35 @@ particles_anim_loop = false
 [sub_resource type="PlaneMesh" id="PlaneMesh_f8qwp"]
 material = SubResource("StandardMaterial3D_np0or")
 size = Vector2(0.5, 0.5)
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_bx338"]
+offsets = PackedFloat32Array(0, 0.313869, 1)
+colors = PackedColorArray(1, 1, 1, 0.215686, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2wjkh"]
+gradient = SubResource("Gradient_bx338")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_riegk"]
+gravity = Vector3(0, 0, 0)
+angle_min = 45.0
+angle_max = 45.0
+color_ramp = SubResource("GradientTexture1D_2wjkh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trm6h"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.25098, 0.65098, 0.772549, 1)
+albedo_texture = ExtResource("3_chpjo")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_db7m3"]
+material = SubResource("StandardMaterial3D_trm6h")
+size = Vector2(5, 5)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m2d8"]
@@ -418,6 +448,17 @@ one_shot = true
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qvwwx")
 draw_pass_1 = SubResource("PlaneMesh_f8qwp")
+
+[node name="FlashProtego" type="GPUParticles3D" parent="Corps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.763313, -1.529)
+layers = 2
+emitting = false
+amount = 1
+lifetime = 0.75
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_riegk")
+draw_pass_1 = SubResource("PlaneMesh_db7m3")
 
 [node name="BrasGauche" type="MeshInstance3D" parent="Corps"]
 transform = Transform3D(0.276319, 0.233648, 0, -0.116824, 0.552638, 0, 0, 0, 0.3, -0.610454, 0.317994, 0)
