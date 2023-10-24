@@ -10,12 +10,10 @@ TODO
 	- + "IA" (des bots) ----- à voir, genre mangemorts ? en plus de voldemort si joueur solo
 - annexes 
 	- designer le menu principal (bouton, input : thème HP ?)
-	- logo
 	- dessiner map en rapport avec Harry Potter (Style la cour de Poudlard avec des débris pour se cacher et tout genre ?)
 		- colonnes tout autour de la map (sur l'étage, au bord de la descente)
 		- plus aucun matériau allure basic (genre gris de base)
 	- faire un ciel et une ambiance
-	- faire un trait de couleur rouge/verte qui se dirige vers l'ennemi
 	- ajouter de la musuique : lorsqu'on jette un sort, quand on fait protégo, une musique de fond (harry potter), prise de dégâts
 
 

@@ -123,6 +123,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p1ye6")
 surface_material_override/1 = SubResource("StandardMaterial3D_g0gub")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/Plane"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Plane/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_l2v7k")

@@ -97,7 +97,7 @@ func play_attack_effects():
 	flash_attack.emitting = true
 	# Affichage du sort
 	if raycast.get_collider():
-		MyUtils.creer_sort(flash_attack.global_transform.origin, raycast.get_collision_point(), true)
+		MyUtils.creer_sort(flash_attack.global_transform.origin, raycast.get_collision_point(), false)
 
 # Gestion de la défense
 @rpc("call_local")

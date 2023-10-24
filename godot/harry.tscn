@@ -598,7 +598,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.487, -0.43)
 cull_mask = 1048574
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -100)
 collision_mask = 2
 
 [node name="Tete" type="MeshInstance3D" parent="."]

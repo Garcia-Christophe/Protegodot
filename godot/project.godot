@@ -18,6 +18,10 @@ boot_splash/image="res://logo.png"
 boot_splash/fullsize=false
 config/icon="res://logo.png"
 
+[autoload]
+
+MyUtils="*res://MyUtils.gd"
+
 [input]
 
 up={
