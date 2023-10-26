@@ -61,6 +61,7 @@ func add_harry(peer_id):
 	add_child(harry)
 	if harry.is_multiplayer_authority():
 		harry.maj_vie.connect(maj_barre_de_vie)
+		harry.fin_de_partie.connect(resultats)
 
 # Ajout de Voldemort dans l'arbre
 func add_voldy(peer_id):
@@ -69,6 +70,7 @@ func add_voldy(peer_id):
 	add_child(voldy)
 	if voldy.is_multiplayer_authority():
 		voldy.maj_vie.connect(maj_barre_de_vie)
+		voldy.fin_de_partie.connect(resultats)
 
 # Suppression du joueur dans l'arbre
 func remove_player(peer_id):
@@ -79,6 +81,10 @@ func remove_player(peer_id):
 # Synchronisation de la barre de vie
 func maj_barre_de_vie(valeur_vie):
 	barre_de_vie.value = valeur_vie
+
+func resultats():
+	print("fin de partie")
+	menu_principal.show()
 
 # Dès qu'un joueur spawn, le connecte à sa barre de vie
 func _on_multiplayer_spawner_spawned(node):

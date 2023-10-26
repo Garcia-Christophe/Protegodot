@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
-# Signal pour mettre à jour la vie du joueur
-signal maj_vie(valeur_vie)
+# Signaux
+signal maj_vie(valeur_vie) # Pour mettre à jour la vie du joueur remote
+signal fin_de_partie() # Fin de partie quand un joueur a perdu
 
 # Références aux noeuds de l'arbre
 @onready var camera = $Camera3D
@@ -9,7 +10,6 @@ signal maj_vie(valeur_vie)
 @onready var flash_attack = $Corps/Flash
 @onready var flash_defense = $Corps/FlashProtego
 @onready var raycast = $Camera3D/RayCast3D
-@onready var scaler = $Corps/Scaler/MeshInstance3D
 
 # Constantes
 const SPEED = 8.0
@@ -57,6 +57,11 @@ func _unhandled_input(event):
 # Appelé à chaque frame ('delta' est le temps depuis la précédente frame)
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
+
+	# Si le joueur tombe dans l'eau, alors il perd une vie et respawn au milieu
+	if position.y < -50 and is_on_floor():
+		receive_damage()
+		position = Vector3.ZERO
 	
 	# Gestion de la gravité
 	if not is_on_floor():
@@ -97,7 +102,7 @@ func play_attack_effects():
 	flash_attack.emitting = true
 	# Affichage du sort
 	if raycast.get_collider():
-		MyUtils.creer_sort(flash_attack.global_transform.origin, raycast.get_collision_point(), true)
+		MyUtils.creer_sort(flash_attack.global_transform.origin, raycast.get_collision_point(), flash_attack.draw_pass_1.material.albedo_color)
 
 # Gestion de la défense
 @rpc("call_local")
@@ -114,8 +119,9 @@ func play_defense_effects():
 func receive_damage():
 	vie -= 1
 	if vie <= 0:
-		vie = 3
-		position = Vector3.ZERO
+#		vie = 3
+#		position = Vector3.ZERO
+		fin_de_partie.emit()
 	# Envoie du signal de mise à jour de la barre de vie
 	maj_vie.emit(vie)
 

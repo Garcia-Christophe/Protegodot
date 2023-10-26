@@ -9,7 +9,6 @@ signal maj_vie(valeur_vie)
 @onready var flash_attack = $Corps/Flash
 @onready var flash_defense = $Corps/FlashProtego
 @onready var raycast = $Camera3D/RayCast3D
-@onready var scaler = $Corps/Scaler/MeshInstance3D
 
 # Constantes
 const SPEED = 8.0
@@ -57,6 +56,11 @@ func _unhandled_input(event):
 # Appelé à chaque frame ('delta' est le temps depuis la précédente frame)
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
+
+	# Si le joueur tombe dans l'eau, alors il perd une vie et respawn au milieu
+	if position.y < -50 and is_on_floor():
+		receive_damage()
+		position = Vector3.ZERO
 	
 	# Gestion de la gravité
 	if not is_on_floor():
@@ -97,7 +101,7 @@ func play_attack_effects():
 	flash_attack.emitting = true
 	# Affichage du sort
 	if raycast.get_collider():
-		MyUtils.creer_sort(flash_attack.global_transform.origin, raycast.get_collision_point(), false)
+		MyUtils.creer_sort(flash_attack.global_transform.origin, raycast.get_collision_point(), flash_attack.draw_pass_1.material.albedo_color)
 
 # Gestion de la défense
 @rpc("call_local")

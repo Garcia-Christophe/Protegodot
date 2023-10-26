@@ -2,19 +2,22 @@ TODO
 
 === PROTEGODOT ===
 
-- map
-	- reproduire famous (poudlard?) map
 - objectifs
-	- gagner 1 manche, 3 vies chacun (1 vie = 3 sorts).
-- joueurs
-	- + "IA" (des bots) ----- à voir, genre mangemorts ? en plus de voldemort si joueur solo
+	- gagner 1 manche, 3 vies chacun (1 vie = 3 sorts)
 - annexes 
 	- designer le menu principal (bouton, input : thème HP ?)
-	- dessiner map en rapport avec Harry Potter (Style la cour de Poudlard avec des débris pour se cacher et tout genre ?)
-		- colonnes tout autour de la map (sur l'étage, au bord de la descente)
-		- plus aucun matériau allure basic (genre gris de base)
+	- dessiner map
+		- mettre des lumières au bout du pont, dans la partie cours, légèrement dans la forêt
 	- faire un ciel et une ambiance
-	- ajouter de la musuique : lorsqu'on jette un sort, quand on fait protégo, une musique de fond (harry potter), prise de dégâts
-
+		- soir, ciel étoilé, assez sombre mais pas trop, genre 18h-19h
+	- ajouter de la musique : 
+		- une musique de fond (harry potter)
+		- lorsqu'on jette un sort
+		- quand on fait protégo
+		- prise de dégâts
+	- Echap = menu (bouton Reprendre, bouton Quitter, descriptifs touches)
+		- ne pas capurer la souris à ce moment, possible de réduire/agrandir/fermer la fenêtre
+	- Sort : lumière qui en sort, genre laser (bien visible dans la nuit tu vois)
+	- ajouter une souris personnalisée (voir vidéo, before publish for noobs)
 
 === NOTES ===
