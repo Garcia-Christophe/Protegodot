@@ -25,9 +25,9 @@ func _on_heberger_btn_pressed():
 	vue_joueur.show()
 	
 	# Création du serveur
-	enet_peer.create_server(PORT)
+	enet_peer.create_server(PORT, 1) # 2e param = max clients
 	multiplayer.multiplayer_peer = enet_peer
-	multiplayer.peer_connected.connect(add_voldy)
+	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 	
 	# Affichage des adresses locales du PC host pour pouvoir jouer en LAN
@@ -35,12 +35,14 @@ func _on_heberger_btn_pressed():
 	for ip in IP.get_local_addresses():
 		print("  - ", ip)
 	
-	# Ajoute le 1re joueur (car le serveur est créé par le pc d'un joueur)
-	add_harry(multiplayer.get_unique_id())
-	
 	# Setup du multijoueurs
 	print("\nTentative d'établissement du multijoueurs...")
 	upnp_setup()
+	
+	# Ajoute le 1re joueur (car le serveur est créé par le pc d'un joueur)
+	add_player(multiplayer.get_unique_id())
+#	enet_peer.create_client("localhost", PORT)
+#	multiplayer.multiplayer_peer = enet_peer
 
 # Gestion du bouton "Rejoindre"
 func _on_rejoindre_btn_pressed():
@@ -54,23 +56,18 @@ func _on_rejoindre_btn_pressed():
 	enet_peer.create_client(input_adresse.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
-# Ajout de Harry dans l'arbre
-func add_harry(peer_id):
-	var harry = HARRY.instantiate()
-	harry.name = str(peer_id)
-	add_child(harry)
-	if harry.is_multiplayer_authority():
-		harry.maj_vie.connect(maj_barre_de_vie)
-		harry.fin_de_partie.connect(resultats)
-
-# Ajout de Voldemort dans l'arbre
-func add_voldy(peer_id):
-	var voldy = VOLDY.instantiate()
-	voldy.name = str(peer_id)
-	add_child(voldy)
-	if voldy.is_multiplayer_authority():
-		voldy.maj_vie.connect(maj_barre_de_vie)
-		voldy.fin_de_partie.connect(resultats)
+# Ajout du joueur dans l'arbre
+func add_player(peer_id):
+	var player
+	if get_tree().get_nodes_in_group("joueur").size() > 0:
+		player = VOLDY.instantiate()
+	else:
+		player = HARRY.instantiate()
+	player.name = str(peer_id)
+	add_child(player)
+	if player.is_multiplayer_authority():
+		player.maj_vie.connect(maj_barre_de_vie)
+		player.fin_de_partie.connect(resultats)
 
 # Suppression du joueur dans l'arbre
 func remove_player(peer_id):
@@ -82,14 +79,18 @@ func remove_player(peer_id):
 func maj_barre_de_vie(valeur_vie):
 	barre_de_vie.value = valeur_vie
 
+# Fin de partie
 func resultats():
-	print("fin de partie")
-	menu_principal.show()
+	var joueurs = get_tree().get_nodes_in_group("joueur")
+	print(" * joueurs.size(): ", joueurs.size())
+	for joueur in joueurs:
+		joueur.resultats.rpc(joueur.vie > 0)
 
-# Dès qu'un joueur spawn, le connecte à sa barre de vie
+# Dès qu'un joueur spawn, le connecte à sa barre de vie et aux résultats
 func _on_multiplayer_spawner_spawned(node):
 	if node.is_multiplayer_authority():
 		node.maj_vie.connect(maj_barre_de_vie)
+		node.fin_de_partie.connect(resultats)
 
 # Mise en place du multijoueurs
 func upnp_setup():

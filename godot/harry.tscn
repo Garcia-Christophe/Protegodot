@@ -361,7 +361,7 @@ properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
 
-[node name="Harry" type="CharacterBody3D"]
+[node name="Harry" type="CharacterBody3D" groups=["gentil", "joueur"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_6hbn3")
