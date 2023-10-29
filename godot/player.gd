@@ -15,6 +15,9 @@ signal fermer_serveur() # Ferme le serveur
 @onready var menu_pause = $CanvasLayer/MenuPause
 @onready var menu_fin = $CanvasLayer/MenuFin
 @onready var titre_fin = $CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Titre/Titre2
+@onready var sort_sound = $Son_Sort
+@onready var protego_sound = $Son_Protego
+@onready var hit_sound = $Son_Hit
 
 # Constantes
 const SPEED = 8.0
@@ -178,6 +181,10 @@ func resultats():
 # Gestion de l'attaque
 @rpc("call_local")
 func play_attack_effects():
+	# Son du sort
+	sort_sound.stop()
+	protego_sound.stop()
+	sort_sound.play()
 	# Animation de la baguette
 	anim_player.stop()
 	anim_player.play("Attaque")
@@ -191,6 +198,10 @@ func play_attack_effects():
 # Gestion de la défense
 @rpc("call_local")
 func play_defense_effects():
+	# Son du sort
+	sort_sound.stop()
+	protego_sound.stop()
+	protego_sound.play()
 	# Animation de la baguette
 	anim_player.stop()
 	anim_player.play("Attaque")
@@ -201,6 +212,11 @@ func play_defense_effects():
 # Gestion de la réception de dégâts
 @rpc("any_peer")
 func receive_damage():
+	# Son du sort
+	sort_sound.stop()
+	protego_sound.stop()
+	hit_sound.play()
+	# Mise à jour de la vie et de la position
 	vie -= 1
 	reset_position()
 	maj_vie.emit(vie) # Envoi du signal de mise à jour de la barre de vie

@@ -1,15 +1,10 @@
 TODO
 
 === PROTEGODOT ===
-	- afficher le nombre de vies actuel sur le nombre total dans la progress bar
 	- faire des easter eggs ?
 		- idée 1 : tirer sur un élément en particulier (genre l'aiguille des minutes) -> regénère toute la vie
 		- idée 2 : faire du parcours, arriver sur le pilier entree de pouldard, et sauter. if y > ?? -> gagne la partie
 	- designer les 3 menus (bouton, input : thème HP)
-	- ajouter de la musique : 
-		- quand menu principal : joue harry potter musique classique, puis stop quand on joue, puis relance quand on retourne sur le menu ("quitter")
-		- lorsqu'on jette un sort
-		- quand on fait protégo
-		- prise de dégâts
+	- textures
 
 === NOTES ===
