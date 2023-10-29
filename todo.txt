@@ -1,20 +1,15 @@
 TODO
 
 === PROTEGODOT ===
-	- bloquer le déplacement si fin de partie
-	- menu fin de partie avec "Victoire des gentils !" / "Victoire des méchants !" avec une petite déco rouge/verte
-	- designer les 3 menus (bouton, input : thème HP ?)
-	- dessiner map
-		- mettre des lumières au bout du pont, dans la partie cours, légèrement dans la forêt
-	- faire un ciel et une ambiance
-		- soir, ciel étoilé, assez sombre mais pas trop, genre 18h-19h
+	- afficher le nombre de vies actuel sur le nombre total dans la progress bar
+	- faire des easter eggs ?
+		- idée 1 : tirer sur un élément en particulier (genre l'aiguille des minutes) -> regénère toute la vie
+		- idée 2 : faire du parcours, arriver sur le pilier entree de pouldard, et sauter. if y > ?? -> gagne la partie
+	- designer les 3 menus (bouton, input : thème HP)
 	- ajouter de la musique : 
-		- une musique de fond (harry potter)
+		- quand menu principal : joue harry potter musique classique, puis stop quand on joue, puis relance quand on retourne sur le menu ("quitter")
 		- lorsqu'on jette un sort
 		- quand on fait protégo
 		- prise de dégâts
-	- Echap = menu (bouton Reprendre, bouton Quitter, descriptifs touches)
-		- ne pas capurer la souris à ce moment, possible de réduire/agrandir/fermer la fenêtre
-	- ajouter une souris personnalisée (voir vidéo, before publish for noobs)
 
 === NOTES ===

@@ -3,6 +3,8 @@ extends CharacterBody3D
 # Signaux
 signal maj_vie(valeur_vie) # Pour mettre à jour la vie du joueur remote
 signal fin_de_partie() # Fin de partie quand un joueur a perdu
+signal goto_menu_principal() # Réaffiche le menu principal
+signal fermer_serveur() # Ferme le serveur
 
 # Références aux noeuds de l'arbre
 @onready var camera = $Camera3D
@@ -10,17 +12,22 @@ signal fin_de_partie() # Fin de partie quand un joueur a perdu
 @onready var flash_attack = $Corps/Flash
 @onready var flash_defense = $Corps/FlashProtego
 @onready var raycast = $Camera3D/RayCast3D
+@onready var menu_pause = $CanvasLayer/MenuPause
+@onready var menu_fin = $CanvasLayer/MenuFin
+@onready var titre_fin = $CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Titre/Titre2
 
 # Constantes
 const SPEED = 8.0
 const JUMP_VELOCITY = 10.0
 const gravity = 20.0
+const NB_VIES = 5
 var start_position
 var start_rotation
 
 # Variables
-var vie = 5
+var vie = NB_VIES
 var partie_en_cours = true
+var pause = false
 
 # Chaque joueur a une autorité différente, permettant d'avoir un contrôle séparé des personnages
 func _enter_tree():
@@ -49,31 +56,39 @@ func _unhandled_input(event):
 	if partie_en_cours:
 		if not is_multiplayer_authority(): return
 		
-		# Déplacement (vue du joueur)
-		if event is InputEventMouseMotion:
-			rotate_y(-event.relative.x * 0.005)
-			camera.rotate_x(-event.relative.y * 0.005)
-			camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+		# Touche Echap : affiche le menu pause
+		if Input.is_action_just_pressed("quit"):
+			pause = true
+			menu_pause.show()
+			# Ne plus capturer la souris
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-		# Clic gauche (attaque)
-		if Input.is_action_just_pressed("attack") and anim_player.current_animation != "Attaque":
-			play_attack_effects.rpc()
-			if raycast.is_colliding():
-				var hit_player = raycast.get_collider()
-				# Si ennemi = joueur (!= environnement) + si ennemi se défend pas
-				if hit_player.has_method("is_protected") and not hit_player.is_protected():
-					hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
-		# Clic droit (défense)
-		elif Input.is_action_just_pressed("defend"):
-			play_defense_effects.rpc()
+		if !pause:
+			# Déplacement (vue du joueur)
+			if event is InputEventMouseMotion:
+				rotate_y(-event.relative.x * 0.005)
+				camera.rotate_x(-event.relative.y * 0.005)
+				camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+			
+			# Clic gauche (attaque)
+			if Input.is_action_just_pressed("attack") and anim_player.current_animation != "Attaque":
+				play_attack_effects.rpc()
+				if raycast.is_colliding():
+					var hit_player = raycast.get_collider()
+					# Si ennemi = joueur (!= environnement) + si ennemi se défend pas
+					if hit_player.has_method("is_protected") and not hit_player.is_protected():
+						hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+			# Clic droit (défense)
+			elif Input.is_action_just_pressed("defend"):
+				play_defense_effects.rpc()
 
 # Appelé à chaque frame ('delta' est le temps depuis la précédente frame)
 func _physics_process(delta):
 	if partie_en_cours:
-		if not is_multiplayer_authority(): return
+		if multiplayer.multiplayer_peer and !is_multiplayer_authority(): return
 
 		# Si le joueur tombe dans l'eau, alors il perd une vie et respawn au milieu
-		if position.y < -50 and is_on_floor():
+		if (position.y < -50 and is_on_floor()) or position.y < -60:
 			receive_damage()
 		
 		# Gestion de la gravité
@@ -104,6 +119,39 @@ func _physics_process(delta):
 
 		move_and_slide()
 
+# Bouton Reprendre la partie
+func _on_reprendre_btn_pressed():
+	pause = false
+	menu_pause.hide()
+	# Capture de la souris dans le jeu à nouveau
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+# Bouton Quitter la partie
+@rpc("any_peer", "call_local")
+func _on_quitter_btn_pressed():
+	if get_groups().has("gentil"):
+		fermer_serveur.emit()
+	partie_en_cours = false
+	pause = false
+	menu_pause.hide()
+	goto_menu_principal.emit(name)
+	# Ne plus capturer la souris
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	multiplayer.multiplayer_peer = null
+
+# Bouton Rejouer une partie
+func _on_rejouer_btn_pressed():
+	# Capture de la souris dans le jeu à nouveau
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Reset la partie
+	partie_en_cours = true
+	pause = false
+	menu_fin.hide()
+	# Reset le personnage
+	reset_position()
+	vie = NB_VIES
+	maj_vie.emit(vie)
+
 # Jouer l'animation "Attente" à chaque fois que l'animation "Attaque" se termine
 # C'est pour le joueur adverse remote (ex: je joue Harry, alors c'est pour Voldemort de MON écran)
 func _on_animation_player_animation_finished(anim_name):
@@ -117,11 +165,15 @@ func reset_position():
 
 # Gestion de la fin de partie pour le joueur
 @rpc("any_peer", "call_local")
-func resultats(victoire):
-#	queue_free()
+func resultats():
 	partie_en_cours = false
-	print(get_groups())
-	print("  victoire: ", victoire)
+	menu_fin.show()
+	# Ne plus capturer la souris
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if vie > 0:
+		titre_fin.text = "GAGNÉ !"
+	else:
+		titre_fin.text = "PERDU !"
 
 # Gestion de l'attaque
 @rpc("call_local")

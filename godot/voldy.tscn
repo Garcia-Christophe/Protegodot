@@ -713,4 +713,118 @@ libraries = {
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_xn2kh")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuPause" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = 192.0
+offset_right = -310.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MenuPause"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuPause/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Titre" type="Label" parent="CanvasLayer/MenuPause/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Action" type="VBoxContainer" parent="CanvasLayer/MenuPause/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ReprendreBtn" type="Button" parent="CanvasLayer/MenuPause/MarginContainer/VBoxContainer/Action"]
+layout_mode = 2
+text = "Reprendre"
+
+[node name="QuitterBtn" type="Button" parent="CanvasLayer/MenuPause/MarginContainer/VBoxContainer/Action"]
+layout_mode = 2
+text = "Quitter"
+
+[node name="Description" type="VBoxContainer" parent="CanvasLayer/MenuPause/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TouchesDescription" type="Label" parent="CanvasLayer/MenuPause/MarginContainer/VBoxContainer/Description"]
+layout_mode = 2
+text = "Description des touches :
+        -  Z                      : Avancer
+        -  Q                     : Aller à gauche
+        -  S                      : Reculer
+        -  D                     : Aller à droite
+        -  Espace           : Sauter
+        -  Clic gauche   : Lancer un sort d'attaque
+        -  Clic droit        : Se protéger"
+
+[node name="MenuFin" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = 192.0
+offset_right = -310.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MenuFin"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuFin/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Titre" type="VBoxContainer" parent="CanvasLayer/MenuFin/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Titre1" type="Label" parent="CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Titre"]
+layout_mode = 2
+text = "Vous avez"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Titre2" type="Label" parent="CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Titre"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Action" type="VBoxContainer" parent="CanvasLayer/MenuFin/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="RejouerBtn" type="Button" parent="CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Action"]
+layout_mode = 2
+text = "Rejouer"
+
+[node name="QuitterBtn" type="Button" parent="CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Action"]
+layout_mode = 2
+text = "Quitter"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/MenuPause/MarginContainer/VBoxContainer/Action/ReprendreBtn" to="." method="_on_reprendre_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuPause/MarginContainer/VBoxContainer/Action/QuitterBtn" to="." method="_on_quitter_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Action/RejouerBtn" to="." method="_on_rejouer_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Action/RejouerBtn" to="." method="_on_reprendre_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuFin/MarginContainer/VBoxContainer/Action/QuitterBtn" to="." method="_on_quitter_btn_pressed"]
