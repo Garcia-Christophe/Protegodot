@@ -1,0 +1,717 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcoquyxunvp01"]
+
+[ext_resource type="Material" uid="uid://d20yt8oy5b8m8" path="res://textures/texture_Ardoise.tres" id="1_n8ago"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_ksmlo"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1cwlh"]
+data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="ToitCone" type="Node3D"]
+
+[node name="Ardoises1" type="Node3D" parent="."]
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises1"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises1/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises1/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises1"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises1/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises1/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises1"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises1/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises1/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises1"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises1/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises1/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises2" type="Node3D" parent="."]
+transform = Transform3D(0.961262, 0, 0.275637, 0, 1, 0, -0.275637, 0, 0.961262, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises2"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises2/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises2/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises2"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises2/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises2/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises2"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises2/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises2/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises2"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises2/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises2/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises3" type="Node3D" parent="."]
+transform = Transform3D(0.848048, 0, 0.529919, 0, 1, 0, -0.529919, 0, 0.848048, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises3"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises3/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises3/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises3"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises3/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises3/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises3"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises3/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises3/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises3"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises3/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises3/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises4" type="Node3D" parent="."]
+transform = Transform3D(0.669131, 0, 0.743145, 0, 1, 0, -0.743145, 0, 0.669131, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises4"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises4/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises4/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises4"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises4/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises4/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises4"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises4/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises4/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises4"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises4/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises4/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises5" type="Node3D" parent="."]
+transform = Transform3D(0.438371, 0, 0.898794, 0, 1, 0, -0.898794, 0, 0.438371, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises5"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises5/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises5/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises5"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises5/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises5/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises5"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises5/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises5/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises5"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises5/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises5/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises6" type="Node3D" parent="."]
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises6"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises6/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises6/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises6"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises6/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises6/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises6"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises6/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises6/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises6"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises6/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises6/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises7" type="Node3D" parent="."]
+transform = Transform3D(-0.104529, 0, 0.994522, 0, 1, 0, -0.994522, 0, -0.104529, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises7"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises7/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises7/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises7"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises7/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises7/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises7"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises7/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises7/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises7"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises7/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises7/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises8" type="Node3D" parent="."]
+transform = Transform3D(-0.374607, 0, 0.927184, 0, 1, 0, -0.927184, 0, -0.374607, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises8"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises8/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises8/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises8"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises8/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises8/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises8"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises8/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises8/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises8"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises8/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises8/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises9" type="Node3D" parent="."]
+transform = Transform3D(-0.615661, 0, 0.788011, 0, 1, 0, -0.788011, 0, -0.615661, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises9"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises9/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises9/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises9"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises9/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises9/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises9"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises9/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises9/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises9"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises9/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises9/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises10" type="Node3D" parent="."]
+transform = Transform3D(-0.809017, 0, 0.587785, 0, 1, 0, -0.587785, 0, -0.809017, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises10"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises10/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises10/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises10"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises10/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises10/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises10"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises10/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises10/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises10"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises10/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises10/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises11" type="Node3D" parent="."]
+transform = Transform3D(-0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939692, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises11"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises11/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises11/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises11"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises11/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises11/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises11"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises11/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises11/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises11"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises11/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises11/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoises12" type="Node3D" parent="."]
+transform = Transform3D(-0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, -0.997564, 0, 0, 0)
+
+[node name="Ardoise1" type="MeshInstance3D" parent="Ardoises12"]
+transform = Transform3D(1, 1.42374e-07, -5.02025e-10, -2.03392e-08, 6.19605, -0.0465306, -5.02025e-09, 3.25714, 0.088515, 0, 1.18322, -1.67572)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises12/Ardoise1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises12/Ardoise1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise2" type="MeshInstance3D" parent="Ardoises12"]
+transform = Transform3D(-4.37114e-08, 3.2539, 0.0885394, 0, 6.19776, -0.0464842, -1, -1.42232e-07, -3.87018e-09, -1.63707, 1.18322, -0.0106862)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises12/Ardoise2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises12/Ardoise2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise3" type="MeshInstance3D" parent="Ardoises12"]
+transform = Transform3D(-4.37114e-08, -3.2539, -0.0885394, 0, 6.19776, -0.0464842, 1, -1.42232e-07, -3.87018e-09, 1.637, 1.183, -0.011)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises12/Ardoise3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises12/Ardoise3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
+
+[node name="Ardoise4" type="MeshInstance3D" parent="Ardoises12"]
+transform = Transform3D(-1, -2.84465e-07, -7.74036e-09, 0, 6.19776, -0.0464842, 8.74228e-08, -3.25389, -0.0885394, 0, 1.183, 1.676)
+layers = 512
+material_override = ExtResource("1_n8ago")
+mesh = SubResource("PrismMesh_ksmlo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ardoises12/Ardoise4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ardoises12/Ardoise4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1cwlh")
