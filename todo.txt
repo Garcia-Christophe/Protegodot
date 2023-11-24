@@ -1,10 +1,11 @@
 TODO
 
 === PROTEGODOT ===
-	- faire des easter eggs ?
-		- idée 1 : tirer sur un élément en particulier (genre l'aiguille des minutes) -> regénère toute la vie
-		- idée 2 : faire du parcours, arriver sur le pilier entree de pouldard, et sauter. if y > ?? -> gagne la partie
-	- designer les 3 menus (bouton, input : thème HP)
-	- textures
 
-=== NOTES ===
+- rendre le projet propre :
+	- variables : tout en français
+- window full screen available
+- afficher "Multijoueur OK/KO" dans menu pause et pas en log
+
+
+====== NOTES ======
