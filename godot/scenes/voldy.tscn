@@ -1,11 +1,12 @@
-[gd_scene load_steps=62 format=3 uid="uid://dbenn0lhq6btp"]
+[gd_scene load_steps=63 format=3 uid="uid://dbenn0lhq6btp"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_wuk74"]
-[ext_resource type="Texture2D" uid="uid://isowhgvnqu0k" path="res://assets/images/flashAttaque.png" id="2_nkykm"]
-[ext_resource type="Texture2D" uid="uid://dpmquj3qjrtlo" path="res://assets/images/flashDefense.png" id="3_bdpny"]
-[ext_resource type="AudioStream" uid="uid://cvova05vctaxq" path="res://assets/musiques/sort_voldy.mp3" id="4_21um2"]
-[ext_resource type="AudioStream" uid="uid://d0m4woh8rwltg" path="res://assets/musiques/sort_protego.mp3" id="5_rd8au"]
-[ext_resource type="AudioStream" uid="uid://dbcisg1ugc5h1" path="res://assets/musiques/hit.mp3" id="6_hwssi"]
+[ext_resource type="Script" path="res://scripts/joueur.gd" id="1_0alw8"]
+[ext_resource type="Texture2D" uid="uid://isowhgvnqu0k" path="res://assets/images/flashAttaque.png" id="2_syaf6"]
+[ext_resource type="Texture2D" uid="uid://dpmquj3qjrtlo" path="res://assets/images/flashDefense.png" id="3_lura8"]
+[ext_resource type="AudioStream" uid="uid://cvova05vctaxq" path="res://assets/musiques/sort_voldy.mp3" id="4_yo0il"]
+[ext_resource type="AudioStream" uid="uid://d0m4woh8rwltg" path="res://assets/musiques/sort_protego.mp3" id="5_2ep7e"]
+[ext_resource type="AudioStream" uid="uid://dbcisg1ugc5h1" path="res://assets/musiques/hit.mp3" id="6_3jtme"]
+[ext_resource type="AudioStream" uid="uid://b2amatpgsd0ll" path="res://assets/musiques/pluie.mp3" id="7_h5o60"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr0cw"]
 albedo_color = Color(0.941176, 0.788235, 0.572549, 1)
@@ -162,7 +163,7 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.407843, 0.909804, 0.498039, 1)
-albedo_texture = ExtResource("2_nkykm")
+albedo_texture = ExtResource("2_syaf6")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -191,7 +192,7 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.25098, 0.65098, 0.772549, 1)
-albedo_texture = ExtResource("3_bdpny")
+albedo_texture = ExtResource("3_lura8")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -385,7 +386,7 @@ properties/2/watch = false
 [node name="Voldy" type="CharacterBody3D" groups=["joueur", "mechant"]]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_wuk74")
+script = ExtResource("1_0alw8")
 
 [node name="Corps" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -823,7 +824,7 @@ text = "Quitter"
 
 [node name="Son_Sort" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33859, 2.17787, -1.61189)
-stream = ExtResource("4_21um2")
+stream = ExtResource("4_yo0il")
 volume_db = -30.0
 max_db = 6.0
 area_mask = 3
@@ -832,7 +833,7 @@ attenuation_filter_db = 0.0
 
 [node name="Son_Protego" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33859, 2.17787, -1.61189)
-stream = ExtResource("5_rd8au")
+stream = ExtResource("5_2ep7e")
 volume_db = -30.0
 max_db = 6.0
 area_mask = 3
@@ -840,7 +841,12 @@ attenuation_filter_cutoff_hz = 20500.0
 attenuation_filter_db = 0.0
 
 [node name="Son_Hit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_hwssi")
+stream = ExtResource("6_3jtme")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_h5o60")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/MenuPause/MarginContainer/VBoxContainer/Action/ReprendreBtn" to="." method="_on_reprendre_btn_pressed"]

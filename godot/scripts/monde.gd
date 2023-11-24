@@ -20,10 +20,10 @@ var enet_peer = ENetMultiplayerPeer.new()
 func _physics_process(_delta):
 	# Fermeture du serveur lorsque plus personne n'est dessus
 	if partie_commencee and get_tree().get_nodes_in_group("joueur").size() == 0:
-		if multiplayer.is_connected("peer_connected", add_player):
-			multiplayer.peer_connected.disconnect(add_player)
-		if multiplayer.is_connected("peer_disconnected", remove_player):
-			multiplayer.peer_disconnected.disconnect(remove_player)
+		if multiplayer.is_connected("peer_connected", ajouter_joueur):
+			multiplayer.peer_connected.disconnect(ajouter_joueur)
+		if multiplayer.is_connected("peer_disconnected", supprimer_joueur):
+			multiplayer.peer_disconnected.disconnect(supprimer_joueur)
 
 # Gestion du bouton "Héberger"
 func _on_heberger_btn_pressed():
@@ -36,18 +36,20 @@ func _on_heberger_btn_pressed():
 		multiplayer.multiplayer_peer = null
 		enet_peer.close()
 	enet_peer.create_server(PORT, MAX_CLIENTS)
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
+	multiplayer.peer_connected.connect(ajouter_joueur)
+	multiplayer.peer_disconnected.connect(supprimer_joueur)
 	multiplayer.multiplayer_peer = enet_peer
 	
 	# Setup du multijoueurs
-	print("\nTentative d'établissement du multijoueur...")
-	if !upnp_setup():
-		print("Tes conditions ne permettent pas de host une game en ligne.")
-	display_ip_addresses()
+	var addresses_ip = $CanvasLayer/TransfertAddressesIP
+	if !upnp_setup(addresses_ip):
+		addresses_ip.text = "Multijoueurs KO :(\n" + addresses_ip.text + "\n"
+	else:
+		addresses_ip.text = "Multijoueurs OK :)\n" + addresses_ip.text + "\n"
+	display_ip_addresses(addresses_ip)
 	
 	# Ajoute le 1re joueur (car le serveur est créé par le pc d'un joueur)
-	add_player(multiplayer.get_unique_id())
+	ajouter_joueur(multiplayer.get_unique_id())
 
 # Gestion du bouton "Rejoindre"
 func _on_rejoindre_btn_pressed():
@@ -65,27 +67,27 @@ func _on_rejoindre_btn_pressed():
 	multiplayer.multiplayer_peer = enet_peer
 
 # Ajout du joueur dans l'arbre
-func add_player(peer_id):
-	var player
+func ajouter_joueur(peer_id):
+	var joueur
 	if get_tree().get_nodes_in_group("joueur").size() > 0:
-		player = VOLDY.instantiate()
+		joueur = VOLDY.instantiate()
 	else:
-		player = HARRY.instantiate()
-	player.name = str(peer_id)
-	add_child(player)
-	if player.is_multiplayer_authority():
-		player.maj_vie.connect(maj_barre_de_vie)
-		player.maj_mana.connect(maj_barre_de_mana)
-		player.fin_de_partie.connect(resultats)
-		player.goto_menu_principal.connect(show_menu_principal)
-		player.fermer_serveur.connect(fermer_serveur)
+		joueur = HARRY.instantiate()
+	joueur.name = str(peer_id)
+	add_child(joueur)
+	if joueur.is_multiplayer_authority():
+		joueur.maj_vie.connect(maj_barre_de_vie)
+		joueur.maj_mana.connect(maj_barre_de_mana)
+		joueur.fin_de_partie.connect(resultats)
+		joueur.aller_au_menu_principal.connect(afficher_menu_principal)
+		joueur.fermer_serveur.connect(fermer_serveur)
 		partie_commencee = true
 
 # Suppression du joueur client dans l'arbre (ici Voldemort)
-func remove_player(peer_id):
-	var player = get_node_or_null(str(peer_id))
-	if player:
-		player.queue_free()
+func supprimer_joueur(peer_id):
+	var joueur = get_node_or_null(str(peer_id))
+	if joueur:
+		joueur.queue_free()
 
 # Synchronisation de la barre de vie
 func maj_barre_de_vie(valeur_vie):
@@ -104,14 +106,14 @@ func resultats():
 		joueur.resultats.rpc_id(joueur.get_multiplayer_authority())
 
 # Affiche le menu principal
-func show_menu_principal(peer_id):
+func afficher_menu_principal(peer_id):
 	menu_principal.show()
 	vue_joueur.hide()
 	
 	# Retire tous les joueurs de l'arbre global de chaque joueur
-	remove_player(peer_id)
+	supprimer_joueur(peer_id)
 	for joueur in multiplayer.get_peers():
-		remove_player(joueur)
+		supprimer_joueur(joueur)
 
 # Ferme le serveur
 func fermer_serveur():
@@ -120,47 +122,44 @@ func fermer_serveur():
 	for joueur in joueurs:
 		joueur._on_quitter_btn_pressed.rpc_id(joueur.get_multiplayer_authority())
 
-# Dès qu'un joueur spawn, le connecte à sa barre de vie et aux résultats
-func _on_multiplayer_spawner_spawned(node):
-	if node.is_multiplayer_authority():
-		node.maj_vie.connect(maj_barre_de_vie)
-		node.maj_mana.connect(maj_barre_de_mana)
-		node.fin_de_partie.connect(resultats)
-		node.goto_menu_principal.connect(show_menu_principal)
-		node.fermer_serveur.connect(fermer_serveur)
+# Dès qu'un joueur spawn, le connecte aux différents signaux
+func _on_multiplayer_spawner_spawned(joueur):
+	if joueur.is_multiplayer_authority():
+		joueur.maj_vie.connect(maj_barre_de_vie)
+		joueur.maj_mana.connect(maj_barre_de_mana)
+		joueur.fin_de_partie.connect(resultats)
+		joueur.aller_au_menu_principal.connect(afficher_menu_principal)
+		joueur.fermer_serveur.connect(fermer_serveur)
 
-# Mise en place du multijoueurs
-func upnp_setup():
+# Mise en place du multijoueur
+func upnp_setup(addresses_ip):
 	var upnp = UPNP.new()
 	
 	# Vérifie que UPNP existe (si c'est activé)
-	var discover_result = upnp.discover()
-	if discover_result != UPNP.UPNP_RESULT_SUCCESS:
-		print("  Multijoueur KO :(\n  Erreur : 'UPNP Discover' > %s" % discover_result)
+	var resultat_discover = upnp.discover()
+	if resultat_discover != UPNP.UPNP_RESULT_SUCCESS:
+		print("Multijoueur Erreur : 'UPNP Discover' > %s" % resultat_discover)
 		return false
 	
 	# Vérifie si UPNP peut être utilisé correctement
 	if !(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway()):
-		print("  Multijoueur KO :(\n  Erreur : 'UPNP Gateway' > gateway invalide")
+		print("Multijoueur Erreur : 'UPNP Gateway' > gateway invalide")
 		return false
 	
 	# Fait le lien avec le port du jeu
-	var map_result = upnp.add_port_mapping(PORT)
-	if map_result != UPNP.UPNP_RESULT_SUCCESS:
-		print("  Multijoueur KO :(\n  Erreur : 'UPNP Port Mapping' > %s" % map_result)
+	var resultat_mapping = upnp.add_port_mapping(PORT)
+	if resultat_mapping != UPNP.UPNP_RESULT_SUCCESS:
+		print("Multijoueur Erreur : 'UPNP Port Mapping' > %s" % resultat_mapping)
 		return false
 	
 	# Succès :)
-	print("  Multijoueurs OK :)\n  Adresse en ligne : %s" % upnp.query_external_address())
-	var ip_addresses = $CanvasLayer/TransfertAddressesIP
-	ip_addresses.text = "Adresse en ligne :\n   -> %s" % upnp.query_external_address()
+	addresses_ip.text = "Adresse en ligne :\n   - %s" % upnp.query_external_address()
 	return true
 
 # Enregistrement des adresses locales du PC host pour pouvoir jouer en LAN
-func display_ip_addresses():
-	var ip_addresses = $CanvasLayer/TransfertAddressesIP
-	ip_addresses.text += "\nAdresses locales :"
+func display_ip_addresses(addresses_ip):
+	addresses_ip.text += "\nAdresses locales :"
 	for ip in IP.get_local_addresses():
 		if "." in ip:
-			ip_addresses.text += "\n   - " + ip
+			addresses_ip.text += "\n   - " + ip
 	

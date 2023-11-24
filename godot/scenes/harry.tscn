@@ -1,13 +1,14 @@
-[gd_scene load_steps=71 format=3 uid="uid://cgr5mphgi61db"]
+[gd_scene load_steps=72 format=3 uid="uid://cgr5mphgi61db"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_xdns1"]
-[ext_resource type="PackedScene" uid="uid://ch2b51bor0vei" path="res://blender/lunette.blend" id="2_6ie0k"]
-[ext_resource type="PackedScene" uid="uid://c7l2w03d0lfoe" path="res://blender/echarpeHarry.blend" id="3_33bso"]
-[ext_resource type="Texture2D" uid="uid://isowhgvnqu0k" path="res://assets/images/flashAttaque.png" id="3_yxx2y"]
-[ext_resource type="Texture2D" uid="uid://dpmquj3qjrtlo" path="res://assets/images/flashDefense.png" id="4_g0nra"]
-[ext_resource type="AudioStream" uid="uid://bwlji2klbrpmr" path="res://assets/musiques/sort_harry.mp3" id="6_b3mmp"]
-[ext_resource type="AudioStream" uid="uid://d0m4woh8rwltg" path="res://assets/musiques/sort_protego.mp3" id="7_x0k3k"]
-[ext_resource type="AudioStream" uid="uid://dbcisg1ugc5h1" path="res://assets/musiques/hit.mp3" id="8_636sq"]
+[ext_resource type="Script" path="res://scripts/joueur.gd" id="1_2ldeb"]
+[ext_resource type="PackedScene" uid="uid://b1pc505gq02g3" path="res://blender/echarpeHarry.blend" id="2_xpyq3"]
+[ext_resource type="Texture2D" uid="uid://isowhgvnqu0k" path="res://assets/images/flashAttaque.png" id="3_iqxgk"]
+[ext_resource type="Texture2D" uid="uid://dpmquj3qjrtlo" path="res://assets/images/flashDefense.png" id="4_ukmul"]
+[ext_resource type="PackedScene" uid="uid://hxxy1c34tba" path="res://blender/lunette.blend" id="5_g568r"]
+[ext_resource type="AudioStream" uid="uid://bwlji2klbrpmr" path="res://assets/musiques/sort_harry.mp3" id="6_nfrue"]
+[ext_resource type="AudioStream" uid="uid://d0m4woh8rwltg" path="res://assets/musiques/sort_protego.mp3" id="7_i4y34"]
+[ext_resource type="AudioStream" uid="uid://dbcisg1ugc5h1" path="res://assets/musiques/hit.mp3" id="8_6r3yo"]
+[ext_resource type="AudioStream" uid="uid://b2amatpgsd0ll" path="res://assets/musiques/pluie.mp3" id="9_0stf8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr0cw"]
 albedo_color = Color(0.941176, 0.788235, 0.572549, 1)
@@ -137,7 +138,7 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.854902, 0.384314, 0.329412, 1)
-albedo_texture = ExtResource("3_yxx2y")
+albedo_texture = ExtResource("3_iqxgk")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -153,7 +154,7 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.25098, 0.65098, 0.772549, 1)
-albedo_texture = ExtResource("4_g0nra")
+albedo_texture = ExtResource("4_ukmul")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -367,14 +368,14 @@ properties/2/watch = false
 [node name="Harry" type="CharacterBody3D" groups=["gentil", "joueur"]]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_xdns1")
+script = ExtResource("1_2ldeb")
 
 [node name="Corps" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_qr0cw")
 mesh = SubResource("CapsuleMesh_uypbh")
 
-[node name="EcharpeHarry" parent="Corps" instance=ExtResource("3_33bso")]
+[node name="EcharpeHarry" parent="Corps" instance=ExtResource("2_xpyq3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01954, 0)
 
 [node name="echarpe-tombante1" type="MeshInstance3D" parent="Corps/EcharpeHarry"]
@@ -609,10 +610,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 material_override = SubResource("StandardMaterial3D_oycfe")
 mesh = SubResource("SphereMesh_vhthd")
 
-[node name="Lunettes" parent="Tete" instance=ExtResource("2_6ie0k")]
+[node name="Lunettes" parent="Tete" instance=ExtResource("5_g568r")]
 transform = Transform3D(0.13, 0, 0, 0, -5.68248e-09, -0.13, 0, 0.13, -5.68248e-09, 0.19, -0.0599999, -0.515)
 
-[node name="lunette2" parent="Tete/Lunettes" instance=ExtResource("2_6ie0k")]
+[node name="lunette2" parent="Tete/Lunettes" instance=ExtResource("5_g568r")]
 transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, -2.92308, 0, 0)
 
 [node name="lunette-branche1" type="MeshInstance3D" parent="Tete/Lunettes"]
@@ -1230,7 +1231,7 @@ text = "Quitter"
 
 [node name="Son_Sort" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.331054, 2.22561, -1.52965)
-stream = ExtResource("6_b3mmp")
+stream = ExtResource("6_nfrue")
 volume_db = -30.0
 max_db = 6.0
 area_mask = 3
@@ -1239,7 +1240,7 @@ attenuation_filter_db = 0.0
 
 [node name="Son_Protego" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.331054, 2.22561, -1.52965)
-stream = ExtResource("7_x0k3k")
+stream = ExtResource("7_i4y34")
 volume_db = -30.0
 max_db = 6.0
 area_mask = 3
@@ -1247,7 +1248,12 @@ attenuation_filter_cutoff_hz = 20500.0
 attenuation_filter_db = 0.0
 
 [node name="Son_Hit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_636sq")
+stream = ExtResource("8_6r3yo")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_0stf8")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/MenuPause/MarginContainer/VBoxContainer/Action/ReprendreBtn" to="." method="_on_reprendre_btn_pressed"]
